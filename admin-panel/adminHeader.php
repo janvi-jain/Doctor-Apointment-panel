@@ -1,3 +1,10 @@
+<?php
+  include('./db_config.php');
+  if(empty($_SESSION['admindata'])){
+    header("location:adminLogin.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +110,7 @@
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="./adminLogin.php" class="dropdown-item">
+          <a href="./adminLogout.php" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
               <div class="media-body">

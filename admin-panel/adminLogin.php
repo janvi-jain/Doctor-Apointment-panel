@@ -1,3 +1,44 @@
+ <?php
+include('./db_config.php');
+
+$error_message = "";
+
+if(isset($_POST['submit'])){
+    try{
+        if(empty($_POST['adminEmail'])){
+          throw new Exception("Email Required !");
+        }
+
+        if(!filter_var($_POST['adminEmail'], FILTER_VALIDATE_EMAIL)){
+          throw new Exception("Please Enter Valid Email !");
+        }
+
+        // if(empty($_POST['password'])){
+        //   throw new Exception("Password Required !");
+        // }
+        $email = $_POST['adminEmail'];
+        $query = "SELECT * FROM admin WHERE email = '$email' AND role = 'admin'";
+        $result = mysqli_query($conn,$query);
+        $count = mysqli_num_rows($result);
+        if($count == 1){
+          $data = mysqli_fetch_array($result);
+          if(!password_verify($_POST['password'],$data['password'])){
+            throw new Exception("InValid Password !");
+          }else{
+            $_SESSION['admindata'] = $data;
+            header("location:adminDashboard.php");
+          }
+        }else{
+          throw new Exception("Invalid Email Address !");
+        }
+
+    }catch(Exception $e){
+        $error_message = $e->getMessage();
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,16 +58,24 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>Admin</b>LTE</a>
+    <a href="./adminLogin.php">Admin Login </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to Admin Panel</p>
-
-      <form action="index3.html" method="post">
+        <?php
+          if(!empty($error_message)){
+        ?>
+        <div class="alert alert-danger">
+            <?php echo $error_message; ?>
+        </div>
+        <?php
+          } 
+        ?>
+      <form  method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Email" name= "adminEmail">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +83,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name = "password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -52,7 +101,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
