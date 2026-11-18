@@ -1,4 +1,29 @@
-<?php include('./db_config.php')?>
+<?php include('./db_config.php');
+  $error_message = "";
+  // $success_message = "";
+  if(isset($_POST['submit'])){
+    try{
+      if(empty($_POST['adminEmail'])){
+        throw new Exception("Email Required !");
+      }
+      if(!filter_var($_POST['adminEmail'], FILTER_VALIDATE_EMAIL)){
+        throw new Exception("Please Enter Valid Email !");
+      }
+      $email = $_POST['adminEmail'];
+      $query = "SELECT * FROM admin WHERE email = '$email' AND role = 'admin'";
+      $result = mysqli_query($conn,$query);
+      $count = mysqli_num_rows($result);
+      if($count == 1){
+        $_SESSION['adminEmail'] = $email;
+        header("Location: ./mail_config.php");
+      }else{
+        throw new Exception("Invalid Email Address !");
+      }
+    }catch(Exception $e){
+      $error_message = $e->getMessage();
+    }
+  } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +43,24 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="./adminDashboard.php"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
-
-      <form action="recover-password.html" method="post">
+      <?php
+        if(!empty($error_message)){ 
+      ?>
+      <div class="alert alert-danger">
+      <?php echo $error_message; ?>
+      </div>
+      <?php
+    } 
+    ?>
+      <form method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="adminEmail" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -36,7 +69,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Request new password</button>
           </div>
           <!-- /.col -->
         </div>
