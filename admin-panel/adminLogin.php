@@ -119,7 +119,7 @@ if(isset($_POST['submit'])){
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="./AdminForgot.php">I forgot my password</a>
+        <a href="./adminForgot.php">I forgot my password</a>
       </p>
       <!-- <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>

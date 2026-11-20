@@ -81,11 +81,11 @@
       </li>
     
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="./AdminProfile.php">
+        <a class="nav-link" data-toggle="dropdown" href="./adminProfile.php">
             profile  
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="./AdminProfile.php" class="dropdown-item">
+          <a href="./adminProfile.php" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
               <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
@@ -98,7 +98,7 @@
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="./adminChange.php" class="dropdown-item">
+          <a href="./adminChangePassword.php" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
              <div class="media-body">

@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 
         unset($_SESSION['otp']);
         $_SESSION['otp_verified'] = true;
-        header("Location: ./resetPassword.php");
+        header("Location: ./adminChange.php");
         exit();
 
     }catch(Exception $e){
