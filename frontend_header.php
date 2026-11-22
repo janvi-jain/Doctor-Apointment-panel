@@ -1,3 +1,7 @@
+<?php
+include('./admin-panel/db_config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,12 +50,21 @@
             <div class="container top-row">
                 <div></div>
                 <div class="top-btns">
-                    <a href="./patient.php" class="patient-btn" data-page="patient">
+                    <?php if(isset($_SESSION['patientData'])) {?>
+                    <a href="./patient-dashboard.php" class="patient-btn">
+                        Patient Dashboard
+                    </a>    
+                    <a href="./patient-logout.php" class="doctor-btn">
+                        Logout
+                    </a>
+                    <?php }else {?>
+                    <a href="./patient-login.php" class="patient-btn" data-page="patient">
                         Patient Login
                     </a>
                     <a href="./doctor-login.php" class="doctor-btn " data-page="doctor-login">
                         Doctor Login
                     </a>
+                    <?php }?>
                 </div>
             </div>
         </div>

@@ -60,3 +60,4 @@ try {
 } catch (Exception $e) {
     echo "Message could not be sent. Error: " . $mail->ErrorInfo;
 }
+?>

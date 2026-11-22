@@ -1,4 +1,8 @@
-<?php include ('frontend_header.php'); ?>
+<?php include ('frontend_header.php'); 
+if(!isset($_SESSION['patientData'])) {
+    header('location:patient-login.php');
+}
+?>
 <section class="patient-appointment-main">
 
     <!--=====================================
@@ -67,98 +71,7 @@
                         SIDEBAR
                 ======================================-->
 
-                <aside class="patient-appointment-sidebar">
-
-                    <div class="patient-appointment-sidebar-top">
-
-                        <img id="patientAppointmentImage" src="images/patients/patient1.jpg" alt="Patient">
-
-                        <h3 id="patientAppointmentName">
-
-                            John Doe
-
-                        </h3>
-
-                        <p>
-
-                            Patient ID :
-
-                            <span id="patientAppointmentId">
-
-                                #P001234
-
-                            </span>
-
-                        </p>
-
-                    </div>
-
-
-                    <ul class="patient-appointment-menu">
-
-                        <li>
-
-                            <a href="#" class="nav-link patient-appointment-menu-link" data-page="patient-dashboard">
-
-                                <i class="fa-solid fa-house"></i>
-
-                                Dashboard
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="nav-link patient-appointment-menu-link" data-page="patient-profile">
-
-                                <i class="fa-solid fa-user"></i>
-
-                                My Profile
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="nav-link patient-appointment-menu-link" data-page="make-appointment">
-
-                                <i class="fa-solid fa-calendar-plus"></i>
-
-                                Make Appointment
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="patient-appointment-menu-link active">
-
-                                <i class="fa-solid fa-calendar-days"></i>
-
-                                My Appointments
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="nav-link patient-appointment-menu-link" data-page="home">
-
-                                <i class="fa-solid fa-right-from-bracket"></i>
-
-                                Logout
-
-                            </a>
-
-                        </li>
-
-                    </ul>
-
-                </aside>
+                <?php include ('./patient-aside.php'); ?>
 
 
                 <!--=====================================

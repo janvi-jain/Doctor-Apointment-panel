@@ -113,13 +113,13 @@
 
 
                 <!-- Patient Login Button -->
-
+                <a href="./patient-login.php">
                 <button type="button" class="patient-switch-btn">
 
                     Patient Login →
 
                 </button>
-
+                </a>
             </div>
 
         </div>

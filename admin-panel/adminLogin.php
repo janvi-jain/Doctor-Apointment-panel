@@ -13,9 +13,9 @@ if(isset($_POST['submit'])){
           throw new Exception("Please Enter Valid Email !");
         }
 
-        // if(empty($_POST['password'])){
-        //   throw new Exception("Password Required !");
-        // }
+        if(empty($_POST['password'])){
+          throw new Exception("Password Required !");
+        }
         $email = $_POST['adminEmail'];
         $query = "SELECT * FROM admin WHERE email = '$email' AND role = 'admin'";
         $result = mysqli_query($conn,$query);
