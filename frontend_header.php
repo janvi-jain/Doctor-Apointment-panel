@@ -1,5 +1,6 @@
 <?php
 include('./admin-panel/db_config.php');
+$current_page = substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
 ?>
 
 <!DOCTYPE html>
