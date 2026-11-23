@@ -19,10 +19,10 @@ if(isset($_POST['submit'])){
             throw new Exception("Invalid OTP !");
         }
 
-
+        // $_SESSION['admin_reset_email'] = $email;
         unset($_SESSION['otp']);
         $_SESSION['otp_verified'] = true;
-        header("Location: ./adminChange.php");
+        header("Location: ./adminUpdatePassword.php");
         exit();
 
     }catch(Exception $e){

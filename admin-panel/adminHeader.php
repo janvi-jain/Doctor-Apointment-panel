@@ -1,8 +1,9 @@
 <?php
   include('./db_config.php');
-  if(empty($_SESSION['admindata'])){
-    header("location:adminLogin.php");
-  }
+    if(!isset($_SESSION['admindata'])){
+        header("Location: adminLogin.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
