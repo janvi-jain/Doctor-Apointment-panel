@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
             throw new Exception("Passwords do not match");
         }
         if($agree_terms != '1'){
-            throw new Exception("You must agree to the terms");
+            throw new Exception("You must agree to the Terms & Conditions");
         }
 
         $patientId = "Pat-" . time() . rand(100, 999);
@@ -198,13 +198,8 @@ if(isset($_POST['submit'])){
                         <div class="login-options">
                             <label class="remember ">
                                 <input type="checkbox" id="rememberPatient" name="agree_terms" value="1">
-                                I agree to the Terms </a>
+                                I agree to the Terms & Conditions</a>
                             </label>
-
-                            <a href="#">
-                                Forgot Password?
-                            </a>
-
                         </div>
 
                         <button type="submit" name="submit" class="login-btn">

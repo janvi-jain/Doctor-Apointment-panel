@@ -21,8 +21,7 @@
       $cPassword = $_POST['cPassword'];
 
       if(password_verify($oldPassword, $dbPassword)){
-
-    if($oldPassword != $newPassword){
+        if($oldPassword != $newPassword){
 
         if(strlen($newPassword) >= 6){
 
@@ -46,13 +45,12 @@
             throw new Exception("New Password Must be 6 Characters Long !");
         }
 
-    }else{
-        throw new Exception("Old Password and New Password Cannot be Same !");
-    }
-
-}else{
-    throw new Exception("Old Password Not Matched !");
-}
+        }else{
+          throw new Exception("Old Password and New Password Cannot be Same !");
+        }
+      }else{
+        throw new Exception("Old Password Not Matched !");
+      }
     }catch(Exception $e){
       $error_message = $e->getMessage();
     }

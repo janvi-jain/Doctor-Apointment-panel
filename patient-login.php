@@ -16,9 +16,9 @@ if(isset($_POST['login-btn'])){
           throw new Exception("Please Enter Valid Email !");
         }
 
-        // if(empty($_POST['password'])){
-        //   throw new Exception("Password Required !");
-        // }
+        if(empty($_POST['password'])){
+          throw new Exception("Password Required !");
+        }
         $email = $_POST['patientEmail'];
         $query = "SELECT * FROM patients WHERE email = '$email' AND status = 'active'";
         $result = mysqli_query($conn,$query);
@@ -109,7 +109,7 @@ if(isset($_POST['login-btn'])){
                                 Remember Me
                             </label>
 
-                            <a href="#">
+                            <a href="./patient-forget-password.php">
                                 Forgot Password?
                             </a>
 
